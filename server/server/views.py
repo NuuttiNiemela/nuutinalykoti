@@ -9,18 +9,20 @@ def hello(request):
 
 
 def lighton(request):
-    api = 'coap-client -m put -u "{}" -k "{}" -e \'{ "3311": [{ "5850": 1 }] }\' "coaps://{}:5684/15001/65536"' .format(
-        os.getenv('USER'), os.getenv('LIGHT_PASSWORD'), os.getenv('GW_IP'))
+    payload = '{ "3311": [{ "5850": 1 }] }'
+    api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"' .format(
+        os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
 
-    return JsonResponse({'response': result})
+    return JsonResponse({'response_text': result})
 
 
 def lightoff(request):
-    api = 'coap-client -m put -u "{}" -k "{}" -e \'{ "3311": [{ "5850": 0 }] }\' "coaps://{}:5684/15001/65536"'.format(
-        os.getenv('USER'), os.getenv('LIGHT_PASSWORD'), os.getenv('GW_IP'))
-    
+    payload = '{ "3311": [{ "5850": 0 }] }'
+    api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"'.format(
+        os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
+
     result = os.popen(api)
-    
-    return JsonResponse({'response': result})
+
+    return JsonResponse({'response_text': result})
