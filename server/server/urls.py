@@ -30,4 +30,10 @@ urlpatterns = [
 urlpatterns += [
     path('0/1', views.lighton, name='lighton'),
     path('0/0', views.lightoff, name='lightoff'),
+    path('0/red', views.red, name='red'),
+    path('0/green', views.green, name='green'),
+    path('0/blue', views.blue, name='blue'),
+    path('0/yellow', views.yellow, name='yellow'),
+    path('0/janne', views.janne, name='janne'),
+    path('0/disco', views.disco, name='disco'),
 ]
