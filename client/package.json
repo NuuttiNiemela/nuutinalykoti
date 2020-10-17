@@ -8,11 +8,13 @@
   },
   "author": "NuuttiNiemela",
   "license": "ISC",
-  "proxy": "",
+  "proxy": "http://192.168.1.233:8000",
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
+    "jquery": "^3.5.1",
     "react": "^16.13.1",
+    "react-bootstrap-slider": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.3"
   },

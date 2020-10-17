@@ -9,6 +9,7 @@ def hello(request):
     return JsonResponse({'response_text':'hello world!'})
 
 
+@csrf_exempt
 def lighton(request):
     payload = '{ "3311": [{ "5850": 1, "5706": "f5faf6" }] }'
     api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"' .format(
