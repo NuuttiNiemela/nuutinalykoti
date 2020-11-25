@@ -128,9 +128,10 @@ def discotime(first, second):
     return result
 
 
-def brightness(br):
-    corbr = br * 254
-    payload = '{ "3311": [{ "5850": 1, "5851": %s }] }' % corbr
+def brightness(request, br):
+    corbr = (int(br) * 254 / 100)
+    print("kirkkaus: " + br + " == " + str(corbr))
+    payload = '{ "3311": [{ "5850": 1, "5851": %s }] }' % int(corbr)
     api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"'.format(
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
     
