@@ -38,4 +38,5 @@ urlpatterns += [
     path('0/disco', views.disco, name='disco'),
     url(r'0/lights/(\w{6})/(\d+)', views.lights, name='lights'),
     url(r'0/lightsxy/(\d+)/(\d+)/(\d+)', views.lightsXY, name='lightsXY'),
+    url(r'0/brightness/(\d+)', views.brightness, name='brightness'),
 ]
