@@ -9,6 +9,28 @@ def hello(request):
     return JsonResponse({'response_text':'hello world!'})
 
 
+def lights(request, color, brightness):
+    print("moi " + color)
+    print("jo " + brightness)
+    payload = '{ "3311": [{ "5850": 1, "5706": "%s", "5851": %s }] }'%(color, brightness)
+    api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"' .format(
+        os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
+
+    result = os.popen(api)
+
+    return JsonResponse({'response_text': result})
+
+
+def lightsXY(request, xColor, yColor, brightness):
+    payload = '{ "3311": [{ "5850": 1, "5709": %s, "5710": %s, "5851": %s }] }'%(xColor, yColor, brightness)
+    api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"' .format(
+        os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
+
+    result = os.popen(api)
+
+    return JsonResponse({'response_text': result})
+
+
 def lighton(request):
     payload = '{ "3311": [{ "5850": 1, "5706": "f5faf6" }] }'
     api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"' .format(
@@ -88,7 +110,7 @@ def disco(request):
     result = discotime(50000, 15500)
     result = discotime(60000, 5500)
     result = discotime(65500, 1500)
-    
+
     return JsonResponse({'response_text': result})
 
 
@@ -98,9 +120,9 @@ def discotime(first, second):
     payload = '{ "3311": [{ "5709": {}, "5710": {} }] }'.format(first, second)
     api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"'.format(
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
-    
+
     result = os.popen(api)
     print(result)
     time.sleep(1)
-    
+
     return result
