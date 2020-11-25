@@ -21,6 +21,16 @@ def lights(request, color, brightness):
     return JsonResponse({'response_text': result})
 
 
+def lightsXY(request, xColor, yColor, brightness):
+    payload = '{ "3311": [{ "5850": 1, "5709": %s, "5710": %s, "5851": %s }] }'%(xColor, yColor, brightness)
+    api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"' .format(
+        os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
+
+    result = os.popen(api)
+
+    return JsonResponse({'response_text': result})
+
+
 def lighton(request):
     payload = '{ "3311": [{ "5850": 1, "5706": "f5faf6" }] }'
     api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"' .format(
