@@ -1,5 +1,6 @@
 import os
 import time
+import json
 from django.http import JsonResponse
 from dotenv import load_dotenv
 load_dotenv()
@@ -18,7 +19,7 @@ def lights(request, color, brightness):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def lightsXY(request, xColor, yColor, brightness):
@@ -28,7 +29,7 @@ def lightsXY(request, xColor, yColor, brightness):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def lighton(request):
@@ -38,7 +39,7 @@ def lighton(request):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def lightoff(request):
@@ -48,7 +49,7 @@ def lightoff(request):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def red(request):
@@ -58,7 +59,7 @@ def red(request):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def green(request):
@@ -68,7 +69,7 @@ def green(request):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def blue(request):
@@ -78,7 +79,7 @@ def blue(request):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def yellow(request):
@@ -88,7 +89,7 @@ def yellow(request):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def janne(request):
@@ -98,7 +99,7 @@ def janne(request):
 
     result = os.popen(api)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def disco(request):
@@ -111,7 +112,7 @@ def disco(request):
     result = discotime(60000, 5500)
     result = discotime(65500, 1500)
 
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
 
 
 def discotime(first, second):
@@ -137,4 +138,4 @@ def brightness(request, br):
     
     result = os.popen(api)
     
-    return JsonResponse({'response_text': result})
+    return json.loads(result.read().strip('\n').split('\n')[-1])
