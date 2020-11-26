@@ -18,8 +18,9 @@ def lights(request, color, brightness):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    return JsonResponse({"power": "1", "color": color, "brightness": brightness})
 
 
 def lightsXY(request, xColor, yColor, brightness):
@@ -28,8 +29,9 @@ def lightsXY(request, xColor, yColor, brightness):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    return JsonResponse({"power": "1", "color": "XY-Color", "brightness": brightness})
 
 
 def lighton(request):
@@ -40,7 +42,7 @@ def lighton(request):
     result = os.popen(api)
     print(result.read())
 
-    return JsonResponse({"status": "1", "color": "f5faf6"})
+    return JsonResponse({"power": "1", "color": "f5faf6"})
 
 
 def lightoff(request):
@@ -49,8 +51,9 @@ def lightoff(request):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    return JsonResponse({"power": "0", "color": "f5faf6"})
 
 
 def red(request):
@@ -59,8 +62,9 @@ def red(request):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    return JsonResponse({"power": "1", "color": "dc4b31"})
 
 
 def green(request):
@@ -69,8 +73,9 @@ def green(request):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    return JsonResponse({"power": "1", "color": "a9d62b"})
 
 
 def blue(request):
@@ -79,8 +84,9 @@ def blue(request):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    return JsonResponse({"power": "1", "color": "4a418a"})
 
 
 def yellow(request):
@@ -89,8 +95,9 @@ def yellow(request):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    return JsonResponse({"power": "1", "color": "d6e44b"})
 
 
 def janne(request):
@@ -99,35 +106,9 @@ def janne(request):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
-
-
-def disco(request):
-    result = discotime(1, 65500)
-    result = discotime(10000, 55500)
-    result = discotime(20000, 45500)
-    result = discotime(30000, 35500)
-    result = discotime(40000, 25500)
-    result = discotime(50000, 15500)
-    result = discotime(60000, 5500)
-    result = discotime(65500, 1500)
-
-    return json.loads(result.read().strip('\n').split('\n')[-1])
-
-
-def discotime(first, second):
-    first = first
-    second = second
-    payload = '{ "3311": [{ "5709": {}, "5710": {} }] }'.format(first, second)
-    api = 'coap-client -m put -u "{}" -k "{}" -e \'{}\' "coaps://{}:5684/15001/65536"'.format(
-        os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
-
-    result = os.popen(api)
-    print(result)
-    time.sleep(1)
-
-    return result
+    return JsonResponse({"power": "1", "color": "XY-Color"})
 
 
 def brightness(request, br):
@@ -138,5 +119,6 @@ def brightness(request, br):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
     
     result = os.popen(api)
-    
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    print(result.read())
+
+    return JsonResponse({"power": "1", "brightness": int(corbr)})

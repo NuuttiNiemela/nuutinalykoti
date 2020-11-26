@@ -5,6 +5,8 @@ import ReactBootstrapSlider from 'react-bootstrap-slider';
 const App = props => {
     const [huone, setHuone] = useState('Olohuone')
     const [brightness, setBrightness] = useState(100)
+    const [power, setPower] = useState('0')
+    const [color, setColor] = useState('joo')
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -17,7 +19,9 @@ const App = props => {
 
     const light = (what) => {
         axios.get('/0/' + what)
-            .then(res => console.log(res.data))
+            .then(res => setPower(res.data.power) setColor(res.data.color))
+            .then(() => console.log(power))
+            .then(() => console.log(color))
     }
 
     const lightAndBrightness = (color, brightness) => {
