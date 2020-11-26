@@ -40,7 +40,7 @@ def lighton(request):
     result = os.popen(api)
     print(result.read())
 
-    return JsonResponse(result.read(), safe=False)
+    return JsonResponse({"status": "1", "color": "f5faf6"})
 
 
 def lightoff(request):
