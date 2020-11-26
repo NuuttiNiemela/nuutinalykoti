@@ -19,9 +19,11 @@ const App = props => {
 
     const light = (what) => {
         axios.get('/0/' + what)
-            .then(res => setPower(res.data.power) setColor(res.data.color))
+            .then(res => setPower(res.data.power))
+//            .then(res => setColor(res.data.color))
             .then(() => console.log(power))
             .then(() => console.log(color))
+            .then(() => console.log(brightness))
     }
 
     const lightAndBrightness = (color, brightness) => {
