@@ -38,8 +38,9 @@ def lighton(request):
         os.getenv('LIGHT_USER'), os.getenv('LIGHT_PASSWORD'), payload, os.getenv('GW_IP'))
 
     result = os.popen(api)
+    print(result.read())
 
-    return json.loads(result.read().strip('\n').split('\n')[-1])
+    return JsonResponse(result.read(), safe=False)
 
 
 def lightoff(request):
