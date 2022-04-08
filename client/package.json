@@ -8,7 +8,7 @@
   },
   "author": "NuuttiNiemela",
   "license": "ISC",
-  "proxy": "http://192.168.1.233:8000",
+  "proxy": "http://OMAIP:8000",
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
